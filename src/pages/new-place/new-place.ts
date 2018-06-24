@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PlacesServices } from '../../services/places';
-
+import { Geolocation } from '@ionic-native/geolocation';
 /**
  * Generated class for the NewPlacePage page.
  *
@@ -15,8 +15,9 @@ import { PlacesServices } from '../../services/places';
   templateUrl: 'new-place.html',
 })
 export class NewPlacePage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private placeService: PlacesServices) {
+  location: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+     private placeService: PlacesServices, private geolocation: Geolocation) {
   }
 
   ionViewDidLoad() {
@@ -25,5 +26,16 @@ export class NewPlacePage {
   addNewPlace(value: {title: string}) {
     this.placeService.addPlaces(value);
     this.navCtrl.pop();
+  }
+  onLocateUser() {
+    this.geolocation.getCurrentPosition().then((location) => {
+      // resp.coords.latitude
+      // resp.coords.longitude
+      console.log("location fetched");
+      
+      this.location = location;
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
   }
 }
