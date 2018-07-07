@@ -16,12 +16,14 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class NewPlacePage {
   location: any;
+  title: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private placeService: PlacesServices, private geolocation: Geolocation) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewPlacePage');
+    this.title = this.navParams.data.data.title;
   }
   addNewPlace(value: {title: string}) {
     this.placeService.addPlaces(value);

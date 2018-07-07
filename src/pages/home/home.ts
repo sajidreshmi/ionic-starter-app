@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, Modal } from 'ionic-angular';
 import { NewPlacePage } from '../new-place/new-place';
 import { PlacesServices } from '../../services/places';
 import { PlacePage } from '../place/place';
@@ -10,6 +10,7 @@ import { PlacePage } from '../place/place';
 })
 export class HomePage {
   private places: {title: string}[] = [];
+  dataFromModal: any;
   constructor(public navCtrl: NavController, private placeService: PlacesServices,
   private modalCtrl: ModalController) {
 
@@ -23,9 +24,20 @@ export class HomePage {
     );
   }
   onLoadNewPlace() {
-    this.navCtrl.push(NewPlacePage);
+    this.navCtrl.push(NewPlacePage, {
+      data: {
+        title: "Add a new place",
+      }
+    });
   }
-  onLoadPlace() {
-    this.modalCtrl.create(PlacePage).present();
+  onLoadPlace(place) {
+    let data = {title: `This is place - ${place.title}`};
+    let modal: Modal =this.modalCtrl.create(PlacePage, data);
+    modal.onWillDismiss((data) => {
+      // This is going to be executed when the modal is closed, so
+      // you can get the data here
+      this.dataFromModal = data;
+    });
+    modal.present();
   }
 }

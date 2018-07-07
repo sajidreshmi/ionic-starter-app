@@ -14,14 +14,18 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'place.html',
 })
 export class PlacePage {
-
+  title: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlacePage');
   }
+  ionViewWillEnter() {
+    this.title = this.navParams.get('title');
+  }
   onDismissPlace() {
-    this.viewCtrl.dismiss();
+    let obj = 'clicked';
+    this.viewCtrl.dismiss(obj);
   }
 }
