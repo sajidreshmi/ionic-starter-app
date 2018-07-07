@@ -1,27 +1,44 @@
 # ionic-starter-app
 A simple intro app in Ionic 3
 
-Version
+### Version
 1.0.0
 
-Usage
-Installation
+## Usage
+
+
+### Installation
+
 Install the dependencies
 
+```sh
 $ npm install
-Serve
+```
+
+### Serve
 To serve in the browser
 
+```sh
 $ ionic serve
-To Add Platforms
+```
+
+### To Add Platforms
+```sh
 $ cordova platform add android
 $ cordova platform add ios
-Run Platforms
+```
+
+### Run Platforms
 To run in avd
 
+```sh
 $ ionic run android
 $ ionic run ios
-Build Android APK File
+```
+
+### Build Android APK File
 To build APK file to output folder
 
+```sh
 $ ionic build android
+```
